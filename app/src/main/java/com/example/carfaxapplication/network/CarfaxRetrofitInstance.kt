@@ -1,5 +1,6 @@
 package com.example.carfaxapplication.network
 
+import com.example.carfaxapplication.model.CarFaxSearch
 import com.example.carfaxapplication.util.BASE_URL
 import io.reactivex.Observable
 import retrofit2.Retrofit
@@ -18,7 +19,7 @@ class CarfaxRetrofitInstance {
         retrofit.create(CarfaxService::class.java)
     }
 
-    suspend fun getCategory(): Observable<CarfaxService> {
+    suspend fun getCarFax(): Observable<CarFaxSearch> {
         return carfaxService.getCarFax()
     }
 }

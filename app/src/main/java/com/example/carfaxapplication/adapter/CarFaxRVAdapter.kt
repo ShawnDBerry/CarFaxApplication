@@ -12,19 +12,28 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.carfaxapplication.R
 import com.example.carfaxapplication.model.Listing
 
-class CarFaxRVAdapter(private var carList: List<Listing>, private var applicationContext: Context):
+class CarFaxRVAdapter(
+    private var carList: List<Listing>,
+    private var carFaxItemDelegate: CarFaxItemDelegate,
+    private var applicationContext: Context
+) :
     RecyclerView.Adapter<CarFaxRVAdapter.CarFaxAdapterViewHolder>() {
+
+    interface CarFaxItemDelegate {
+        fun viewCarFaxItem(child: Listing)
+    }
 
     class CarFaxAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    var yearMakeModelTrim: TextView = itemView.findViewById(R.id.year_make_model_trim)
-    var currentPriceMileage: TextView = itemView.findViewById(R.id.current_price_mileage)
-    var locationCityState: TextView = itemView.findViewById(R.id.city_state)
-    var vehiclePhoto: ImageView = itemView.findViewById(R.id.car_image)
+        var yearMakeModelTrim: TextView = itemView.findViewById(R.id.year_make_model_trim)
+        var currentPriceMileage: TextView = itemView.findViewById(R.id.current_price_mileage)
+        var locationCityState: TextView = itemView.findViewById(R.id.city_state)
+        var vehiclePhoto: ImageView = itemView.findViewById(R.id.car_image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarFaxAdapterViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.car_item_layout, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.car_item_layout, parent, false)
         return CarFaxAdapterViewHolder(view)
     }
 
@@ -37,14 +46,16 @@ class CarFaxRVAdapter(private var carList: List<Listing>, private var applicatio
                 " " + carList[position].make.toString() + " " + carList[position].model.toString() +
                 " " + carList[position].trim.toString())
 
-        holder.currentPriceMileage.text = (carList[position].currentPrice.toString() + " | " + carList[position].mileage)
-        holder.locationCityState.text = (carList[position].dealer.city + ", " + carList[position].dealer.state)
+        holder.currentPriceMileage.text =
+            (carList[position].currentPrice.toString() + " | " + carList[position].mileage)
+        holder.locationCityState.text =
+            (carList[position].dealer.city + ", " + carList[position].dealer.state)
 
         Glide.with(applicationContext).load(carList[position].images.firstPhoto)
             .apply(RequestOptions.circleCropTransform()).into(holder.vehiclePhoto)
 
         holder.itemView.setOnClickListener {
-
+            carFaxItemDelegate.viewCarFaxItem(carList[position])
         }
     }
 }

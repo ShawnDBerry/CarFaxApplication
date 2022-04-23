@@ -11,7 +11,7 @@ class CarFaxViewModel: ViewModel() {
 
     val carfaxRetrofit = CarfaxRetrofitInstance()
 
-    suspend fun getCarFax(): Observable<CarFaxSearch> {
+     fun getCarFax(): Observable<CarFaxSearch> {
                 return carfaxRetrofit.getCarFax()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

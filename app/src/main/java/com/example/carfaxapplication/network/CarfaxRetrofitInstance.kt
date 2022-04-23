@@ -8,18 +8,24 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class CarfaxRetrofitInstance {
+    private var carfaxService: CarfaxService
 
-    private val retrofit: Retrofit by lazy{
-        Retrofit.Builder().baseUrl(BASE_URL)
+    init {
+        this.carfaxService = createService(retrofitInstance())
+    }
+
+    private fun retrofitInstance(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
     }
-    private val carfaxService: CarfaxService by lazy{
-        retrofit.create(CarfaxService::class.java)
-    }
 
-    suspend fun getCarFax(): Observable<CarFaxSearch> {
+    private fun createService(retrofit: Retrofit): CarfaxService {
+        return retrofit.create(CarfaxService::class.java)
+    }
+     fun getCarFax(): Observable<CarFaxSearch> {
         return carfaxService.getCarFax()
     }
 }

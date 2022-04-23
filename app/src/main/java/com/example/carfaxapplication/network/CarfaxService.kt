@@ -8,5 +8,5 @@ import retrofit2.http.Path
 interface CarfaxService {
 
     @GET("assignment.json")
-    suspend fun getCarFax(): Observable<CarFaxSearch>
+    fun getCarFax(): Observable<CarFaxSearch>
 }

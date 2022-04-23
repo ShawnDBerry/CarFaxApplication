@@ -1,16 +1,26 @@
 package com.example.carfaxapplication.adapter
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.carfaxapplication.R
 import com.example.carfaxapplication.model.Listing
+
 
 class CarFaxRVAdapter(
     private var carList: List<Listing>,
@@ -23,12 +33,17 @@ class CarFaxRVAdapter(
         fun viewCarFaxItem(child: Listing)
     }
 
+    interface CardClickListener {
+        fun onCallDealerButtonClicked(child: Listing)
+    }
+
     class CarFaxAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var yearMakeModelTrim: TextView = itemView.findViewById(R.id.year_make_model_trim)
         var currentPriceMileage: TextView = itemView.findViewById(R.id.current_price_mileage)
         var locationCityState: TextView = itemView.findViewById(R.id.city_state)
         var vehiclePhoto: ImageView = itemView.findViewById(R.id.car_image)
+        var callDealerButton: Button = itemView.findViewById(R.id.call_dealer_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarFaxAdapterViewHolder {
@@ -51,11 +66,17 @@ class CarFaxRVAdapter(
         holder.locationCityState.text =
             (carList[position].dealer.city + ", " + carList[position].dealer.state)
 
-        Glide.with(applicationContext).load(carList[position].images.firstPhoto)
-            .apply(RequestOptions.circleCropTransform()).into(holder.vehiclePhoto)
+        Glide.with(applicationContext).load(carList[position].images.firstPhoto.large)
+            .into(holder.vehiclePhoto)
 
         holder.itemView.setOnClickListener {
             carFaxItemDelegate.viewCarFaxItem(carList[position])
+        }
+        holder.callDealerButton.setOnClickListener {
+            val callIntent = Intent(Intent.ACTION_CALL)
+            callIntent.data = Uri.parse("tel:" + carList[position].dealer.phone)
+            startActivity(applicationContext, callIntent, null)
+
         }
     }
 }

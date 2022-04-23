@@ -35,17 +35,6 @@ class MainActivity : AppCompatActivity(), CarFaxRVAdapter.CarFaxItemDelegate, Ca
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(
-                    Activity(),
-                    Manifest.permission.CALL_PHONE)) {
-            } else {
-                ActivityCompat.requestPermissions(
-                    Activity(),
-                    arrayOf(Manifest.permission.CALL_PHONE),
-                    1)
-            }
-        }
         recyclerView = findViewById(R.id.car_list_recyclerview)
         carFaxViewModel = ViewModelProvider(this).get(CarFaxViewModel::class.java)
         CoroutineScope(Dispatchers.IO).launch {

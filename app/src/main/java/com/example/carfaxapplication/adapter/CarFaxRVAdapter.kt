@@ -74,6 +74,18 @@ class CarFaxRVAdapter(
         }
         holder.callDealerButton.setOnClickListener {
             val callIntent = Intent(Intent.ACTION_CALL)
+
+            if (ActivityCompat.checkSelfPermission(applicationContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(
+                        Activity(),
+                        Manifest.permission.CALL_PHONE)) {
+                } else {
+                    ActivityCompat.requestPermissions(
+                        Activity(),
+                        arrayOf(Manifest.permission.CALL_PHONE),
+                        1)
+                }
+            }
             callIntent.data = Uri.parse("tel:" + carList[position].dealer.phone)
             startActivity(applicationContext, callIntent, null)
 

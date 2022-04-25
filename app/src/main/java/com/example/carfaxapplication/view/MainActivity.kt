@@ -37,9 +37,7 @@ class MainActivity : AppCompatActivity(), CarFaxRVAdapter.CarFaxItemDelegate, Ca
                     .subscribe({ listing ->
                         carList = listing.listings
                         CoroutineScope(Dispatchers.Main).launch{
-                            printResults(listing.listings)
                             setUpRV(listing.listings)
-                            println(listing.listings)
                         }
                     }, { throwable ->
                         Log.d("TAG_Q", "error " + throwable.message)
@@ -57,13 +55,6 @@ class MainActivity : AppCompatActivity(), CarFaxRVAdapter.CarFaxItemDelegate, Ca
         recyclerView?.addItemDecoration(decorater)
 
     }
-
-    private fun printResults(categoryList: List<Listing>) {
-        categoryList.forEach { listItem ->
-            Log.d("TAG_Q", " " + listItem.id)
-        }
-    }
-
 
     override fun viewCarFaxItem(child: Listing) {
         Log.d("TAG_Q", "fragment opened")

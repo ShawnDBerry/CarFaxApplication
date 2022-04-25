@@ -3,7 +3,6 @@ package com.example.carfaxapplication.view
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +15,8 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 
 class MainActivity : AppCompatActivity(), CarFaxRVAdapter.CarFaxItemDelegate, CarFaxRVAdapter.CardClickListener{
@@ -57,14 +58,15 @@ class MainActivity : AppCompatActivity(), CarFaxRVAdapter.CarFaxItemDelegate, Ca
     }
 
     override fun viewCarFaxItem(child: Listing) {
-        Log.d("TAG_Q", "fragment opened")
+        val formatter: NumberFormat = DecimalFormat("#,###")
+        val currencyFormat = formatter.format(child.currentPrice)
         val bundle = Bundle()
         val vehicleImage = child.images.firstPhoto.large
         val vehicleYearMakeModelTrim = (child.year.toString() +
                 " " + child.make.toString() + " " + child.model.toString() +
                 " " + child.trim.toString())
         val location = (child.dealer.city + ", " + child.dealer.state)
-        val currentPriceMileage = (child.currentPrice.toString() + " | " + child.mileage)
+        val currentPriceMileage = ("$" + currencyFormat + " | " + child.mileage + "k mi")
         val interiorColor = child.interiorColor
         val exteriorColor = child.exteriorColor
         val driveType = child.drivetype

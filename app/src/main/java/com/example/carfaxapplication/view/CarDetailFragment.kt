@@ -11,6 +11,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.carfaxapplication.R
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 
 class CarDetailFragment : Fragment() {

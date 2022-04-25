@@ -12,14 +12,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.carfaxapplication.R
 import com.example.carfaxapplication.model.Listing
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 
 class CarFaxRVAdapter(
@@ -57,12 +57,14 @@ class CarFaxRVAdapter(
     }
 
     override fun onBindViewHolder(holder: CarFaxAdapterViewHolder, position: Int) {
+        val formatter: NumberFormat = DecimalFormat("#,###")
+        val currencyFormat = formatter.format(carList[position].currentPrice)
         holder.yearMakeModelTrim.text = (carList[position].year.toString() +
                 " " + carList[position].make.toString() + " " + carList[position].model.toString() +
                 " " + carList[position].trim.toString())
 
         holder.currentPriceMileage.text =
-            (carList[position].currentPrice.toString() + " | " + carList[position].mileage)
+            ("$" + currencyFormat + " | " + carList[position].mileage + "K mi")
         holder.locationCityState.text =
             (carList[position].dealer.city + ", " + carList[position].dealer.state)
 

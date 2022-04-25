@@ -26,7 +26,6 @@ class CarFaxRVAdapter(
     private var carList: List<Listing>,
     private var carFaxItemDelegate: CarFaxItemDelegate,
     private var applicationContext: Context,
-    private var packageManager: PackageManager
 ) :
     RecyclerView.Adapter<CarFaxRVAdapter.CarFaxAdapterViewHolder>() {
 

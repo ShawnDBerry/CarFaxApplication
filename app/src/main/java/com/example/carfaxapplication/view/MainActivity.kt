@@ -27,7 +27,7 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity(), CarFaxRVAdapter.CarFaxItemDelegate, CarFaxRVAdapter.CardClickListener{
     private lateinit var carList: List<Listing>
     private var compositeDisposable = CompositeDisposable()
-    private lateinit var carFaxViewModel: CarFaxViewModel
+    private var carFaxViewModel = CarFaxViewModel()
     private var carFaxRVAdapter: CarFaxRVAdapter? = null
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var carDetailFragment = CarDetailFragment()

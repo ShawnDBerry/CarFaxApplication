@@ -33,7 +33,6 @@ class CarDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val context: Context = getApplicationContext()
         val carImage: ImageView = view.findViewById(R.id.car_image)
         val yearMakeModelTrim: TextView = view.findViewById(R.id.year_make_model_trim)
         val currentPriceMileage: TextView = view.findViewById(R.id.current_price_mileage)
@@ -45,8 +44,10 @@ class CarDetailFragment : Fragment() {
         var engine: TextView = view.findViewById(R.id.vehicle_engine_value)
         var bodyStyle: TextView = view.findViewById(R.id.vehicle_body_type_value)
         var callDealerButton: Button = view.findViewById(R.id.call_dealer_button)
-        Glide.with(context).load(this.requireArguments().getString("vehicleImage"))
-            .into(carImage)
+        activity?.let {
+            Glide.with(it.applicationContext).load(this.requireArguments().getString("vehicleImage"))
+                .into(carImage)
+        }
         yearMakeModelTrim.text = this.requireArguments().getString("yearMakeModelTrim")
         currentPriceMileage.text = this.requireArguments().getString("currentPriceMileage")
         locationCityState.text = this.requireArguments().getString("locationCityState")
@@ -56,12 +57,13 @@ class CarDetailFragment : Fragment() {
         transmission.text = this.requireArguments().getString("transmission")
         engine.text = this.requireArguments().getString("engine")
         bodyStyle.text = this.requireArguments().getString("bodyStyle")
-        val callDealerPhone = this.requireArguments().getString("dealerPhone")
+        val callDealerPhone = this.requireArguments().getString("bodyStyle")
 
         callDealerButton.setOnClickListener {
             val callIntent = Intent(Intent.ACTION_DIAL)
             callIntent.data = Uri.parse("tel:$callDealerPhone")
-            ContextCompat.startActivity(context, callIntent, null)
+            startActivity(callIntent) }
+
         }
     }
 }

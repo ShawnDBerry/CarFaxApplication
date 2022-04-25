@@ -45,7 +45,8 @@ class CarDetailFragment : Fragment() {
         var bodyStyle: TextView = view.findViewById(R.id.vehicle_body_type_value)
         var callDealerButton: Button = view.findViewById(R.id.call_dealer_button)
         activity?.let {
-            Glide.with(it.applicationContext).load(this.requireArguments().getString("vehicleImage"))
+            Glide.with(it.applicationContext)
+                .load(this.requireArguments().getString("vehicleImage"))
                 .into(carImage)
         }
         yearMakeModelTrim.text = this.requireArguments().getString("yearMakeModelTrim")
@@ -62,8 +63,8 @@ class CarDetailFragment : Fragment() {
         callDealerButton.setOnClickListener {
             val callIntent = Intent(Intent.ACTION_DIAL)
             callIntent.data = Uri.parse("tel:$callDealerPhone")
-            startActivity(callIntent) }
-
+            startActivity(callIntent)
         }
+
     }
 }

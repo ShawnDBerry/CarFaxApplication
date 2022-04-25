@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(), CarFaxRVAdapter.CarFaxItemDelegate, Ca
         val formatter: NumberFormat = DecimalFormat("#,###")
         val currencyFormat = formatter.format(child.currentPrice)
         val bundle = Bundle()
-        val vehicleImage = child.images.firstPhoto.large
+        val vehicleImage = child.images.firstPhoto.medium
         val vehicleYearMakeModelTrim = (child.year.toString() +
                 " " + child.make.toString() + " " + child.model.toString() +
                 " " + child.trim.toString())

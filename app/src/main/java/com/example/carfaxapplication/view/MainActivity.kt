@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity(), CarFaxRVAdapter.CarFaxItemDelegate, Ca
         val transmission = child.transmission
         val engine = child.engine
         val bodyType = child.bodytype
+        val dealerPhone = child.dealer.phone
 
         bundle.putString("vehicleImage", vehicleImage)
         bundle.putString("yearMakeModelTrim", vehicleYearMakeModelTrim)
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity(), CarFaxRVAdapter.CarFaxItemDelegate, Ca
         bundle.putString("transmission", transmission)
         bundle.putString("engine", engine)
         bundle.putString("bodyType", bodyType)
+        bundle.putString("dealerPhone", dealerPhone)
         carDetailFragment.arguments = bundle
         val manager = supportFragmentManager
         val transaction = manager.beginTransaction()

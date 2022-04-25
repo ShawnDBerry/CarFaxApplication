@@ -1,15 +1,9 @@
 package com.example.carfaxapplication.view
 
-import android.Manifest
-import android.app.Activity
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -73,10 +67,37 @@ class MainActivity : AppCompatActivity(), CarFaxRVAdapter.CarFaxItemDelegate, Ca
 
     override fun viewCarFaxItem(child: Listing) {
         Log.d("TAG_Q", "fragment opened")
-        val fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction()
-            .addToBackStack(null)
-            .replace(R.id.car_detail_framelayout, carDetailFragment).commit()
+        val bundle = Bundle()
+        val vehicleImage = child.images.firstPhoto.large
+        val vehicleYearMakeModelTrim = (child.year.toString() +
+                " " + child.make.toString() + " " + child.model.toString() +
+                " " + child.trim.toString())
+        val location = (child.dealer.city + ", " + child.dealer.state)
+        val currentPriceMileage = (child.currentPrice.toString() + " | " + child.mileage)
+        val interiorColor = child.interiorColor
+        val exteriorColor = child.exteriorColor
+        val driveType = child.drivetype
+        val transmission = child.transmission
+        val engine = child.engine
+        val bodyType = child.bodytype
+
+        bundle.putString("vehicleImage", vehicleImage)
+        bundle.putString("yearMakeModelTrim", vehicleYearMakeModelTrim)
+        bundle.putString("currentPriceMileage", currentPriceMileage)
+        bundle.putString("location", location)
+        bundle.putString("interiorColor", interiorColor)
+        bundle.putString("exteriorColor", exteriorColor)
+        bundle.putString("driveType", driveType)
+        bundle.putString("transmission", transmission)
+        bundle.putString("engine", engine)
+        bundle.putString("bodyType", bodyType)
+
+        carDetailFragment.arguments = bundle
+        val manager = supportFragmentManager
+        val transaction = manager.beginTransaction()
+        transaction.add(R.id.car_detail_framelayout, carDetailFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
     override fun onCallDealerButtonClicked(child: Listing) {

@@ -58,7 +58,7 @@ class CarDetailFragment : Fragment() {
         transmission.text = this.requireArguments().getString("transmission")
         engine.text = this.requireArguments().getString("engine")
         bodyStyle.text = this.requireArguments().getString("bodyStyle")
-        val callDealerPhone = this.requireArguments().getString("bodyStyle")
+        val callDealerPhone = this.requireArguments().getString("dealerPhone")
 
         callDealerButton.setOnClickListener {
             val callIntent = Intent(Intent.ACTION_DIAL)

@@ -62,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Vehicle Info"
+
                 android:textColor="@color/black"
                 android:textFontWeight="700"
                 android:textStyle="bold"
@@ -78,6 +79,7 @@
                 android:layout_marginTop="30dp"
                 android:text="Location"
                 android:textFontWeight="700"
+                android:layout_margin="10dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vehicle_info_title"
@@ -91,6 +93,7 @@
                 android:layout_marginTop="30dp"
                 android:text="Interior color"
                 android:textColor="@color/black"
+                android:layout_margin="10dp"
                 android:textFontWeight="700"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -105,6 +108,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Interior color"
                 android:textFontWeight="700"
+                android:layout_margin="10dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vehicle_location_property"
@@ -119,6 +123,7 @@
                 android:text="maissdvdfvdfvdfvdffi"
                 android:textColor="@color/black"
                 android:textFontWeight="700"
+                android:layout_margin="10dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vehicle_location_value"
@@ -132,6 +137,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Exterior color"
                 android:textFontWeight="700"
+                android:layout_margin="10dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vehicle_interior_color_value"
@@ -146,6 +152,7 @@
                 android:text="maissdvdfvdfvdfvdffi"
                 android:textColor="@color/black"
                 android:textFontWeight="700"
+                android:layout_margin="10dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vehicle_interior_color_value"
@@ -159,6 +166,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Drive Type"
                 android:textFontWeight="700"
+                android:layout_margin="10dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vehicle_exterior_color_property"
@@ -173,6 +181,7 @@
                 android:text="maissdvdfvdfvdfvdffi"
                 android:textColor="@color/black"
                 android:textFontWeight="700"
+                android:layout_margin="10dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vehicle_exterior_color_value"
@@ -187,6 +196,7 @@
                 android:text="Transmission"
                 android:textFontWeight="700"
                 android:textStyle="bold"
+                android:layout_margin="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vehicle_drive_type_property" />
 
@@ -199,6 +209,7 @@
                 android:textColor="@color/black"
                 android:textFontWeight="700"
                 android:textStyle="bold"
+                android:layout_margin="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vehicle_drive_type_value"
 
@@ -212,6 +223,7 @@
                 android:text="Engine"
                 android:textFontWeight="700"
                 android:textStyle="bold"
+                android:layout_margin="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vehicle_transmission_property" />
 
@@ -223,6 +235,7 @@
                 android:text="maissdvdfvdfvdfvdffi"
                 android:textColor="@color/black"
                 android:textFontWeight="700"
+                android:layout_margin="10dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vehicle_transmission_value"
@@ -235,22 +248,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Body Type"
+                android:layout_margin="10dp"
                 android:textFontWeight="700"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vehicle_transmission_property" />
+                app:layout_constraintTop_toBottomOf="@+id/vehicle_engine_value" />
 
             <TextView
                 android:id="@+id/vehicle_body_type_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_margin="10dp"
                 android:text="maissdvdfvdfvdfvdffi"
                 android:textColor="@color/black"
                 android:textFontWeight="700"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vehicle_transmission_value"
+                app:layout_constraintTop_toBottomOf="@+id/vehicle_engine_value"
 
                 />
 
@@ -260,7 +275,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="70dp"
                 android:background="@drawable/bordertop"
                 android:text="Call Dealer"
                 android:textColor="@color/button_color"

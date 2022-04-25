@@ -84,7 +84,6 @@ class MainActivity : AppCompatActivity(), CarFaxRVAdapter.CarFaxItemDelegate, Ca
         bundle.putString("transmission", transmission)
         bundle.putString("engine", engine)
         bundle.putString("bodyType", bodyType)
-
         carDetailFragment.arguments = bundle
         val manager = supportFragmentManager
         val transaction = manager.beginTransaction()

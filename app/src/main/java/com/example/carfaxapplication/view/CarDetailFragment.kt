@@ -2,24 +2,23 @@ package com.example.carfaxapplication.view
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.bumptech.glide.Glide
 import com.example.carfaxapplication.R
-import java.text.DecimalFormat
-import java.text.NumberFormat
 
 
 class CarDetailFragment : Fragment() {
@@ -33,7 +32,10 @@ class CarDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val context: Context = getApplicationContext()
 
+        val packageManager: PackageManager = context.getPackageManager()
+        val packageName: String = context.getPackageName()
         val yearMakeModelTrim: TextView = view.findViewById(R.id.year_make_model_trim)
         val currentPriceMileage: TextView = view.findViewById(R.id.current_price_mileage)
         val locationCityState: TextView = view.findViewById(R.id.vehicle_location_value)
@@ -62,7 +64,7 @@ class CarDetailFragment : Fragment() {
         callDealerButton.setOnClickListener {
             val callIntent = Intent(Intent.ACTION_CALL)
 
-            if (context?.let { it1 -> ActivityCompat.checkSelfPermission(it1, Manifest.permission.CALL_PHONE) } != PackageManager.PERMISSION_GRANTED) {
+            if (context.let { it1 -> ActivityCompat.checkSelfPermission(it1, Manifest.permission.CALL_PHONE) } != PackageManager.PERMISSION_GRANTED) {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(
                         Activity(),
                         Manifest.permission.CALL_PHONE)) {

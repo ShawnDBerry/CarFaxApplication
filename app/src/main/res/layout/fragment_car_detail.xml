@@ -53,15 +53,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/year_make_model_trim"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/city_state"
+                app:layout_constraintBottom_toTopOf="@id/vehicle_info_title"
                 />
 
             <TextView
-                android:id="@+id/city_state"
+                android:id="@+id/vehicle_info_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Highland Park, IL"
+                android:text="VehicleInfo"
                 android:textFontWeight="700"
+                android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/current_price_mileage"
                 app:layout_constraintStart_toStartOf="parent"

@@ -36,8 +36,6 @@ class CarDetailFragment : Fragment() {
         var transmission: TextView = view.findViewById(R.id.vehicle_transmission_value)
         var engine: TextView = view.findViewById(R.id.vehicle_engine_value)
         var bodyStyle: TextView = view.findViewById(R.id.vehicle_body_type_value)
-        var vehiclePhoto: ImageView = view.findViewById(R.id.car_image)
-        var callDealerButton: Button = view.findViewById(R.id.call_dealer_button)
         context?.let {
             Glide.with(it).load(this.requireArguments().getString("vehicleImage"))
                 .into(view.findViewById(R.id.car_image))
